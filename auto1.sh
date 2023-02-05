@@ -1,8 +1,8 @@
 #!/bin/sh
 
-COMMAND="$(ls | sed 's/\(.*\)\..*/\1/')"
+COMMAND="$(ls /etc/httpd/conf/plesk.conf.d/vhosts | sed 's/\(.*\)\..*/\1/')"
 
 for WEBSITE in $COMMAND
 do
-        ls /root/$WEBSITE
+        echo $WEBSITE: $(cat /var/www/vhosts/$WEBSITE/httpdocs/wp-includes/version.php | grep "wp_version =")
 done
